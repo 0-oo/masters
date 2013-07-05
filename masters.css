@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+html {
+	overflow-y: scroll;
+}
+body {
+	padding-top: 50px;
+}
+body, select, input, button {
+	font-family: "Hiragino Kaku Gothic ProN", "Meiryo UI", "メイリオ", Verdana, sans-serif;
+}
+select {
+	width: auto;
+}
+[disabled] {
+	cursor: auto;
+}
+#container {
+	padding-top: 1em;
+}
+button.where-minus {
+	vertical-align: top;
+}
+#where-search {
+	width: 8em;
+}
+#data-list {
+	width: auto;
+	white-space: nowrap;
+}
+#data-list tr.header {
+	background-color: #D9EDF7;
+}
+#data-list .num {
+	text-align: right;
+}
+#data-list td.has-input {
+	padding: 3px 0;
+}
+#data-list input {
+	margin: 0;
+}
+#data-plus {
+	text-align: center;
+}
+#where, #selectors {
+	display: none;
+}

@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !/masters\.(css|js)
+RewriteRule .* _bootstrap.php [L]
