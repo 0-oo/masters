@@ -2,7 +2,7 @@
 // 基本情報
 define('SITE_TITLE', 'マスタ管理');
 define('BASE_URL', '/masters');	// https://www.example.com/masters の場合
-define('DEBUG_FLG', true);
+define('DEBUG_FLG', false);
 
 // DB接続
 define('DB_NAME', 'masters');
