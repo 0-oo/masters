@@ -1,13 +1,13 @@
 <?php
 // 基本情報
 define('SITE_TITLE', 'マスタ管理');
-define('BASE_URL', '/masters');	// http://www.example.com/masters の場合
-define('DEBUG_FLG', false);
+define('BASE_URL', '/masters');	// https://www.example.com/masters の場合
+define('DEBUG_FLG', true);
 
 // DB接続
 define('DB_NAME', 'masters');
 define('DB_USER', 'masters');
-define('DB_PASS', '');
+define('DB_PASS', 'password');
 define('DB_OTHER', '');
 define('DB_CREATED_AT', 'created_at');	// INSERT日時を登録する全テーブル共通の列名
 define('DB_UPDATED_AT', 'updated_at');	// UPDATE日時を登録する全テーブル共通の列名
@@ -23,13 +23,14 @@ $tables = array(
 	'pets' => array(	// テーブルごとの設定
 		'label' => 'ペット',	// テーブルの表示名
 		'where' => array('name NOT LIKE' => '%丸'),	// 取得条件（共通設定を上書き）
-		'order' => 'birth',	// 並び順（共通設定を上書き）
+		'order' => array('birth'),	// 並び順（共通設定を上書き）
 		'columns' => array(	// 表示する列
 			'id',
 			'name' => '名前',	// 列の表示名を指定する場合
-			'bitrh' => '誕生日',
-			'indoor_flg' => array(
-				'label' => '室内フラグ',
+			'length' => '体長',
+			'birth' => '誕生日',
+			'delete_flg' => array(
+				'label' => '削除フラグ',
 				'select' => array(0, 1),	// 入力時の選択肢
 			),
 			'gender' => array(
@@ -46,11 +47,11 @@ $tables = array(
 					'value' => 'id',	// 外部キーと紐づく列
 					'label' => 'name',	// 入力時に表示させる列
 					'where' => array('delete_flg' => 0),
-					'order' => 'id',
+					'order' => array('id'),
 				),
 			),
 		),
 	),
 	
-	'animals' => array(),	// デフォルト（と、あれば共通設定）のみ適用のテーブルの場合
+	'animals' => array(),	// デフォルト設定（と、あれば共通設定）のみ適用される
 );

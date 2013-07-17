@@ -1,8 +1,4 @@
 <?php
-if (DEBUG_FLG) {
-	ini_set('error_reporting', E_ALL | E_STRICT);
-}
-
 require_once('P3/functions.php');
 require_once('_conf.php');
 

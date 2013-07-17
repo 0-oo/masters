@@ -112,9 +112,17 @@ for ($i = 0; $i < $rows->columnCount(); $i++) {
 	$attr = array('data-column-name' => $columnName);
 	$type = null;
 	
-	if ($meta['pdo_type'] == PDO::PARAM_INT) {
-		$attr['class'] = 'num';
-		$type = 'integer';
+	switch ($meta['native_type']) {
+		case 'LONG':
+			$attr['class'] = 'num';
+			$type = 'integer';
+			break;
+		case 'DATE':
+			$attr['class'] = 'date';
+			$type = 'date';
+			break;
+		default:
+			//dump($meta);
 	}
 	
 	if (in_array('not_null', $meta['flags'])) {
@@ -168,7 +176,7 @@ for ($i = 0; $i < $rows->columnCount(); $i++) {
 		$attr['data-han'] = true;
 	}
 	
-	$columns[$columnName] = array('pdo_type' => $meta['pdo_type']);
+	$columns[$columnName] = array('native_type' => $meta['native_type']);
 	$header .= $html->tag('th', $attr, $label);
 	$whereColumns[$columnName] = $label;
 }
@@ -235,7 +243,7 @@ foreach ($columns as $column) {
 	} else {
 		$attr = array();
 		
-		if ($column['pdo_type'] == PDO::PARAM_INT) {
+		if ($column['native_type'] == 'LONG') {
 			$attr['class'] = 'num';
 		}
 		
@@ -270,8 +278,13 @@ foreach ($rows as $i => $row) {
 			$tag = 'td';
 		}
 		
-		if ($columns[$k]['pdo_type'] == PDO::PARAM_INT) {
-			$attr['class'] = 'num';
+		switch ($columns[$k]['native_type']) {
+			case 'LONG':
+				$attr['class'] = 'num';
+				break;
+			case 'DATE':
+				$v = str_replace('-', '/', $v);
+				break;
 		}
 		
 		echo $html->tag($tag, $attr, $v);

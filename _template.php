@@ -1,8 +1,7 @@
 <?php
-$jQuery = '2.0.2';
-$jQueryIE = '1.10.1';
+$jQuery = '1.10.2';
 $bootstrap = '2.3.2';
-$fontAwesome = '3.1.0';
+$fontAwesome = '3.2.1';
 
 $html = new P3_Html();
 ?>
@@ -49,12 +48,7 @@ foreach ($tables as $table => $prop) {
 
 <div id="container" class="container-fluid"><?php echo $content ?></div>
 
-<!--[if gt IE 8]><!-->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/<?php echo $jQuery ?>/jquery.min.js"></script>
-<!--<![endif]-->
-<!--[if lt IE 9]>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/<?php echo $jQueryIE ?>/jquery.min.js"></script>
-<![endif]-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/<?php echo $jQuery ?>/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/<?php echo $bootstrap ?>/js/bootstrap.min.js"></script>
 <?php echo $html->script($this->baseUrl() . '/masters.js', '.') ?>
 
