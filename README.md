@@ -2,8 +2,8 @@ Masters
 =======
 
 Mastersは、設定ファイルを書くだけで簡単にマスタ管理画面ができるPHP製のツールです。  
-（内部的には[P3 Framework](http://code.google.com/p/p3-framework/), jQuery, Twitter Bootstrap, Bootswatch, Font Awesomeを使っています。）  
-ライセンスは[MITライセンス](http://0-oo.net/pryn/MIT_license.txt)です。
+（内部的には[P3 Framework](https://github.com/orzy/p3), jQuery, Twitter Bootstrapを使っています。）  
+ライセンスは[MITライセンス](http://0-oo.net/MIT_license.txt)です。
 
 -----
 
@@ -27,3 +27,4 @@ __TODO__
 * 外部キーは編集モードでなくてもKEYでなく値（名称等）を表示する
 * ログイン
 * 英語対応
+* Bootstrapの最新バージョン対応

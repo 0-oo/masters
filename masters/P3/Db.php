@@ -7,8 +7,8 @@
  *      * MySQL
  *      * P3_Abstract
  *
- *  @version 3.3.2
- *  @see     http://code.google.com/p/p3-framework/
+ *  @version 3.3.3
+ *  @see     https://github.com/orzy/p3
  *  @license The MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 class P3_Db extends P3_Abstract {
@@ -31,19 +31,17 @@ class P3_Db extends P3_Abstract {
 	 *  @param	string	$others	(Optional) DB接続のその他のパラメータ
 	 *  @see http://php.net/manual/ja/ref.pdo-mysql.connection.php
 	 */
-	public function __construct($db, $user, $passowrd, $others = '') {
-		$pdo = new PDO(
+	public function __construct($db, $user, $password, $others = '') {
+		$this->_pdo = new PDO(
 			"mysql:dbname=$db;charset=utf8;$others",
 			$user,
-			$passowrd,
+			$password,
 			array(
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,	//例外を投げる
 				PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,	//MySQLのみ
 				PDO::ATTR_EMULATE_PREPARES => false,	//サーバサイドのを使う
 			)
 		);
-		
-		$this->_pdo = $pdo;
 	}
 	/**
 	 *  レコード作成時に自動で作成日時を登録する列名を指定する

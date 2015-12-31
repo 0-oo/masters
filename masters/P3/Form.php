@@ -9,7 +9,7 @@
  *      * P3_Session
  *
  *  @version 3.2.0
- *  @see     http://code.google.com/p/p3-framework/
+ *  @see     https://github.com/orzy/p3
  *  @license The MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 class P3_Form extends P3_Abstract {

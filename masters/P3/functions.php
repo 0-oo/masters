@@ -7,7 +7,7 @@
  *      * P3_Abstract
  *
  *  @version 3.1.1
- *  @see     http://code.google.com/p/p3-framework/
+ *  @see     https://github.com/orzy/p3
  *  @license The MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 

@@ -5,8 +5,8 @@
  *  require
  *      * P3_Abstract
  *
- *  @version 3.0.5
- *  @see     http://code.google.com/p/p3-framework/
+ *  @version 3.0.6
+ *  @see     https://github.com/orzy/p3
  *  @license The MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 class P3_Session extends P3_Abstract {
@@ -29,9 +29,13 @@ class P3_Session extends P3_Abstract {
 		if (!session_id()) {
 			$setting = array_merge(array(
 				'name' => 'sid',
-				'cookie_httponly' => true,
-				'hash_function' => true,
 				'gc_maxlifetime' => 60 * 60 * 24 * 3,
+				'cookie_httponly' => true,
+				'use_only_cookies' => true,
+				'entropy_file' => '/dev/urandom',
+				'entropy_length' => 32,
+				'hash_function' => true,
+				'hash_bits_per_character' => 5,
 			), $setting);
 			
 			foreach ($setting as $key => $value) {

@@ -5,8 +5,8 @@
  *  require
  *      * P3_Abstract
  *
- *  @version 3.3.1
- *  @see     http://code.google.com/p/p3-framework/
+ *  @version 3.3.2
+ *  @see     https://github.com/orzy/p3
  *  @license The MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 class P3_Filter extends P3_Abstract {
@@ -100,7 +100,7 @@ class P3_Filter extends P3_Abstract {
 				
 				break;
 			case 'pattern':
-				if (!preg_match('/' . $param . '/D', $value)) {
+				if (!preg_match('/^' . $param . '\z/', $value)) {
 					$error = '正しい形式で入力してください';
 				}
 				
@@ -137,7 +137,7 @@ class P3_Filter extends P3_Abstract {
 		$value = trim(mb_convert_kana($value, 'asKV', self::ENCODING));
 		$value = strtr($value, array('．' => '.', '－' => '-'));
 		list($pattern, $msg) = $this->pattern($type);
-		$pattern = '/' . str_replace('/', '\\/', $pattern) . '/D';
+		$pattern = '/^' . str_replace('/', '\\/', $pattern) . '\z/';
 		
 		switch ($type) {
 			case 'date':
@@ -203,33 +203,33 @@ class P3_Filter extends P3_Abstract {
 				return array(null, '');
 			case 'date':
 				return array(
-					'^[0-9]{4}/(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])$',
+					'[0-9]{4}/(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])',
 					'日付を入力してください（例 ' . date('Y') . '/01/01）'
 				);
 				break;
 			case 'alpha_number':
-				return array('^[a-zA-Z0-9]*$', '英数字で入力してください');
+				return array('[a-zA-Z0-9]+', '英数字で入力してください');
 			case 'alpha_number_hyphen':
 				return array(
-					'^[a-zA-Z0-9](-?[a-zA-Z0-9])*$',
+					'[a-zA-Z0-9](-?[a-zA-Z0-9])*',
 					'英数字かハイフンで入力してください'
 				);
 			case 'number_hyphen':
-				return array('^[0-9](-?[0-9])*$', '数字かハイフンで入力してください');
+				return array('[0-9](-?[0-9])*', '数字かハイフンで入力してください');
 			case 'number':
-				$pattern = '^[0-9]*$';
+				$pattern = '[0-9]+';
 				break;
 			case 'integer':
-				$pattern = '^(0|[1-9][0-9]*)$';
+				$pattern = '(0|[1-9][0-9]*)';
 				break;
 			case 'integer_minus':
-				$pattern = '^(0|-?[1-9][0-9]*)$';
+				$pattern = '(0|-?[1-9][0-9]*)';
 				break;
 			case 'float':
-				$pattern = '^(0|[1-9][0-9]*)(\\.[0-9]+)?$';
+				$pattern = '(0|[1-9][0-9]*)(\\.[0-9]+)?';
 				break;
 			case 'float_minus':
-				$pattern = '^(0|-?[1-9][0-9]*)(\\.[0-9]+)?$';
+				$pattern = '(0|-?[1-9][0-9]*)(\\.[0-9]+)?';
 				break;
 			default:
 				throw new InvalidArgumentException("未定義のtype '$type'");
